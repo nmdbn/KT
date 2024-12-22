@@ -6,6 +6,13 @@
 
 <h1>@ViewData["Title"]</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -32,6 +39,9 @@
         }
     </tbody>
 </table>
+
+<p>Số lượng học phần: @Model.Count()</p>
+<p>Tổng số chỉ: @Model.Sum(c => c.SoTinChi)</p>
 
 <form asp-controller="DangKies" asp-action="DeleteAll" method="post">
     <button type="submit" class="btn btn-danger">Xóa hết</button>
