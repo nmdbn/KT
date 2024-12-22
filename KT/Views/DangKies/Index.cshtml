@@ -1,0 +1,42 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Danh Sách Đăng Ký";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã HP</th>
+            <th>Tên Học Phần</th>
+            <th>Số Tín Chỉ</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@course.MaHp</td>
+                <td>@course.TenHp</td>
+                <td>@course.SoTinChi</td>
+                <td>
+                    <form asp-controller="DangKies" asp-action="Delete" method="post">
+                        <input type="hidden" name="maHP" value="@course.MaHp" />
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-controller="DangKies" asp-action="DeleteAll" method="post">
+    <button type="submit" class="btn btn-danger">Xóa hết</button>
+</form>
+
+<form asp-controller="DangKies" asp-action="Save" method="post">
+    <button type="submit" class="btn btn-success">Lưu</button>
+</form>
